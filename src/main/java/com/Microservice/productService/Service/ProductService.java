@@ -1,0 +1,53 @@
+package com.Microservice.productService.Service;
+
+import com.Microservice.productService.Entity.ProductEntity;
+import com.Microservice.productService.Repository.ProductRepository;
+import com.Microservice.productService.Service.Mapper.ProductMapper;
+import com.Microservice.productService.model.ProductDTO;
+import com.Microservice.productService.model.ProductRequestDTO;
+import io.swagger.models.auth.In;
+import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+@Service
+public class ProductService{
+
+    private ProductRepository productRepository;
+    private ProductMapper productMapper;
+
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+        this.productRepository = productRepository;
+        this.productMapper = productMapper;
+    }
+
+    @Transactional
+    public ProductDTO save(ProductRequestDTO productRequestDTO){
+        ProductEntity productDB = this.productMapper.map(productRequestDTO);
+        this.productRepository.save(productDB);
+        return this.productMapper.map(productDB);
+    }
+
+    @Transactional
+    public List<ProductDTO> retriveAll(){
+        List<ProductDTO> productDTOList = this.productRepository.findAll().stream().map(e->{
+            return this.productMapper.map(e);
+        }).collect(Collectors.toList());
+
+        return productDTOList;
+    }
+
+    @Transactional
+    public ProductDTO retriveById(Integer id){
+        return this.productMapper.map(this.productRepository.findById(id).get());
+    }
+}

@@ -1,0 +1,487 @@
+openapi: 3.1.0
+info:
+    title: "Product-Microservice"
+    summary: "Microservicio de productos"
+    description: "En este microservicio se desarollaran todos los componentes que se crean necesario para proveer todos los recursos relacionados a las peticiones de productos"
+    contact:
+        name: Bautista
+        email: Batubasilio@hotmail.com
+    version: 1.0.0
+    license: 
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+servers:
+    - url: "http://localhost:{port}/api/{basePath}"
+      variables:
+        port:
+            enum:
+                - '8085'
+                - '8080'
+            default: '8080'
+        basePath:
+            default: v1
+tags:
+    - name: "Product" 
+    - name: "Brand"
+    - name: "Prices"
+
+components:
+    schemas:
+        BrandDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+                    description: "Marca"
+
+                dateCreated:
+                    type: string
+                    format: date
+
+        BrandRequestDTO:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: "Marca"
+                dateCreated:
+                    type: string
+                    format: date
+
+        BrandListDTO:
+            type: object
+            properties:
+                items:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/BrandDTO'
+
+        ProductDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+                    description: Nombre del producto
+                price:
+                    type: number
+                    description: Precio del producto
+                status:
+                    type: string
+                    default: ENABLE
+                    enum:
+                        - ENABLE
+                        - DISABLE
+                        - SUSPENDED
+                brand:
+                    type: object
+                    description: Marca del producto
+                    $ref: '#/components/schemas/BrandDTO'
+
+                dateCreated:
+                    type: string
+                    format: date
+
+        ProductRequestDTO:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Nombre del producto
+                price:
+                    type: number
+                    description: Precio del producto
+                status:
+                    type: string
+                    default: ENABLE
+                    enum:
+                        - ENABLE
+                        - DISABLE
+                        - SUSPENDED
+                brand:
+                    type: object
+                    description: Marca del producto
+                    $ref: '#/components/schemas/BrandDTO' 
+                dateCreated:
+                    type: string
+                    format: date
+
+        ProductListDTO:
+            type: object
+            properties:
+                items:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ProductDTO'
+
+        PriceDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                price:
+                    type: number
+                product:
+                    type: object
+                    $ref: '#/components/schemas/ProductDTO'
+                dateCreated:
+                    type: string
+                    format: date
+    
+
+        PriceRequestDTO:
+            type: object
+            properties:
+                price:
+                    type: number
+                product:
+                    type: object
+                    $ref: '#/components/schemas/ProductDTO'
+                dateCreated:
+                    type: string
+                    format: date
+
+        PriceListDTO:
+            type: object
+            properties:
+                items:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/PriceDTO'       
+
+paths:
+    /products:
+        post:
+            tags:
+                - Product
+            security:
+                - bearerAuth: []
+            summary: Crear producto
+            description: Este end point ejecuta las rutinas de creacion de un producto
+            operationId: createProduct
+            requestBody:
+                description: Crear objeto productos
+                content: 
+                  application/json:
+                    schema:
+                        $ref: '#/components/schemas/ProductRequestDTO'
+            responses:
+                '200':
+                    description: 'Peticion correcta'
+                    content: 
+                      application/json: 
+                        schema: 
+                          $ref: '#/components/schemas/ProductDTO'
+        put:
+            tags:
+                - Product
+            security:
+                - bearerAuth: []
+            summary: Crear producto
+            description: Este end point ejecuta las rutinas de creacion de un producto
+            operationId: updateProduct
+            requestBody:
+                description: Crear objeto productos
+                content: 
+                  application/json:
+                    schema:
+                        $ref: '#/components/schemas/ProductRequestDTO'
+            responses:
+                '200':
+                    description: 'Peticion correcta'
+                    content: 
+                      application/json: 
+                        schema: 
+                          $ref: '#/components/schemas/ProductDTO'       
+        get:
+            tags:
+                - Product
+            security: 
+                - bearerAuth: []
+            summary: Retorna el listado de todos los productos
+            description: Retorna el listado de todos los productos, Autenticacion necesaria
+            operationId: retriveAllProduct
+            responses: 
+              200:
+                description: Si la peticion es correcta
+                content: 
+                  application/json: 
+                    schema:
+                        $ref: '#/components/schemas/ProductListDTO'
+
+    /products/{productId}:
+        get:
+            tags:
+                - Product
+            security:
+                - bearerAuth: []
+            summary: Retorna el listado de todos los productos filtrado por id
+            description: Retorna el listado de todos los productos filtrado por id, Autenticacion necesaria
+            operationId: retriveById 
+            parameters:
+                - name: productId
+                  in: path
+                  description: ID del producto
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: Si la peticion es correcta
+                    content: 
+                      application/json: 
+                        schema:
+                            $ref: '#/components/schemas/ProductDTO'
+        delete:
+            tags:
+                - Product
+            security:
+                - bearerAuth: []
+            summary: Elimina productos filtrado por id
+            description: Elimina todos los productos filtrado por id, Autenticacion necesaria
+            operationId: deleteById 
+            parameters:
+                - name: productId
+                  in: path
+                  description: ID del producto
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: Si la peticion es correcta
+                    content: 
+                      application/json: 
+                        schema:
+                            message:
+                                type: string
+                                format: text
+                                default: Producto eliminado
+
+    /products/name/{productName}:
+        get:
+            tags:
+                - Product
+            security:
+                - bearerAuth: []
+            summary: Retorna el listado de todos los productos filtrado por id
+            description: Retorna el listado de todos los productos filtrado por id, Autenticacion necesaria
+            operationId: retriveByName 
+            parameters:
+                - name: productName
+                  in: path
+                  description: ID del producto
+                  required: true
+                  schema:
+                    type: string
+                   
+            responses:
+                200:
+                    description: Si la peticion es correcta
+                    content: 
+                      application/json: 
+                        schema:
+                            $ref: '#/components/schemas/ProductDTO'
+
+    /brands:
+        post:
+            tags:
+                - Brand
+            security:
+                - bearerAuth: []
+            summary: Crear marca
+            description: Este end point ejecuta las rutinas de creacion de una marca
+            operationId: createBrand
+            requestBody:
+                description: Crear objeto productos
+                content: 
+                  application/json:
+                    schema:
+                        $ref: '#/components/schemas/BrandRequestDTO'
+            responses:
+                '200':
+                    description: 'Peticion correcta'
+                    content: 
+                      application/json: 
+                        schema: 
+                          $ref: '#/components/schemas/BrandDTO'
+        put:
+            tags:
+                - Brand
+            security:
+                - bearerAuth: []
+            summary: Crear marca
+            description: Este end point ejecuta las rutinas de modificacion de una marca
+            operationId: updateBrand
+            requestBody:
+                description: Crear objeto marca
+                content: 
+                  application/json:
+                    schema:
+                        $ref: '#/components/schemas/BrandDTO'
+            responses:
+                '200':
+                    description: 'Peticion correcta'
+                    content: 
+                      application/json: 
+                        schema: 
+                          $ref: '#/components/schemas/BrandDTO'       
+        get:
+            tags:
+                - Brand
+            security: 
+                - bearerAuth: []
+            summary: Retorna el listado de todas las amrcas
+            description: Retorna el listado de todos las marcas, Autenticacion necesaria
+            operationId: retriveAllBrand
+            responses: 
+              200:
+                description: Si la peticion es correcta
+                content: 
+                  application/json: 
+                    schema:
+                        $ref: '#/components/schemas/BrandListDTO'
+
+    /brands/{brandId}:
+        get:
+            tags:
+                - Brand
+            security:
+                - bearerAuth: []
+            summary: Retorna el listado de todas las marcas filtrado por id
+            description: Retorna el listado de todas las marcas filtrado por id, Autenticacion necesaria
+            operationId: retriveBrandById 
+            parameters:
+                - name: brandId
+                  in: path
+                  description: ID de la marca
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: Si la peticion es correcta
+                    content: 
+                      application/json: 
+                        schema:
+                            $ref: '#/components/schemas/BrandDTO'
+        delete:
+            tags:
+                - Brand
+            security:
+                - bearerAuth: []
+            summary: Elimina marca filtrado por id
+            description: Elimina todos las marcas filtrado por id, Autenticacion necesaria
+            operationId: deleteByBrandId 
+            parameters:
+                - name: brandId
+                  in: path
+                  description: ID de la marca
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: Si la peticion es correcta
+                    content: 
+                      application/json: 
+                        schema:
+                            message:
+                                type: string
+                                format: text
+                                default: Producto eliminado
+
+    /brands/name/{brandName}:
+        get:
+            tags:
+                - Brand
+            security:
+                - bearerAuth: []
+            summary: Retorna el listado de todas las marcas filtrado por id
+            description: Retorna el listado de todas las marcas filtrado por id, Autenticacion necesaria
+            operationId: retriveBrandByName 
+            parameters:
+                - name: brandName
+                  in: path
+                  description: ID de las marcas
+                  required: true
+                  schema:
+                    type: string
+                   
+            responses:
+                200:
+                    description: Si la peticion es correcta
+                    content: 
+                      application/json: 
+                        schema:
+                            $ref: '#/components/schemas/BrandDTO'
+
+    /prices:
+        post:
+            tags:
+                - Prices
+            security:
+                - bearerAuth: []
+            summary: Crear historico de precio
+            description: Este end point ejecuta las rutinas de creacion de un historico de precio
+            operationId: createPrice
+            requestBody:
+                description: Crear objeto precio
+                content: 
+                  application/json:
+                    schema:
+                        $ref: '#/components/schemas/PriceRequestDTO'
+            responses:
+                '200':
+                    description: 'Peticion correcta'
+                    content: 
+                      application/json: 
+                        schema: 
+                          $ref: '#/components/schemas/PriceDTO'
+        put:
+            tags:
+                - Prices
+            security:
+                - bearerAuth: []
+            summary: modificar precio
+            description: Este end point ejecuta las rutinas de modificacion de un precio
+            operationId: updatePrice
+            requestBody:
+                description: Crear objeto precio
+                content: 
+                  application/json:
+                    schema:
+                        $ref: '#/components/schemas/PriceDTO'
+            responses:
+                '200':
+                    description: 'Peticion correcta'
+                    content: 
+                      application/json: 
+                        schema: 
+                          $ref: '#/components/schemas/PriceDTO'       
+        get:
+            tags:
+                - Prices
+            security: 
+                - bearerAuth: []
+            summary: Retorna el listado de todos historicos de precios
+            description: Retorna el listado de todos los historicos de precio, Autenticacion necesaria
+            operationId: retriveAllPrice
+            responses: 
+              200:
+                description: Si la peticion es correcta
+                content: 
+                  application/json: 
+                    schema:
+                        $ref: '#/components/schemas/PriceListDTO'
