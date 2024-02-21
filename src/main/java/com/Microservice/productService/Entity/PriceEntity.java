@@ -24,7 +24,7 @@ public class PriceEntity {
     @Column(name="price")
     private Float price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="productId")
     private ProductEntity product;
 
@@ -32,4 +32,12 @@ public class PriceEntity {
     @Temporal(TemporalType.DATE)
     private LocalDate dateCreated;
 
+    @Override
+    public String toString() {
+        return "PriceEntity{" +
+                "id=" + id +
+                ", price=" + price +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
 }

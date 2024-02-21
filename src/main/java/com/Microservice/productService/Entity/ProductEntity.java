@@ -32,11 +32,11 @@ public class ProductEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "brandId")
     private BrandEntity brand;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<PriceEntity> prices;
 
     @Temporal(TemporalType.DATE)
@@ -49,13 +49,11 @@ public class ProductEntity {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", status=" + status +
-                ", brand=" + brand +
-                ", "+
+                ", brand=" +
+                ", prices=" + prices +
                 ", dateCreated=" + dateCreated +
                 '}';
     }
-
-
 
     @Override
     public boolean equals(Object o) {

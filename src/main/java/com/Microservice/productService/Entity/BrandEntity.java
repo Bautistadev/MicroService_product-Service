@@ -27,7 +27,8 @@ public class BrandEntity {
     @Temporal(TemporalType.DATE)
     private LocalDate dateCreated;
 
-
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    private List<ProductEntity> productList;
 
     @Override
     public String toString() {
@@ -35,6 +36,7 @@ public class BrandEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
+                ", productList=" + productList +
                 '}';
     }
 }
