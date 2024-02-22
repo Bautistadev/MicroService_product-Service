@@ -11,6 +11,7 @@ import com.Microservice.productService.model.ProductRequestDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,6 +40,8 @@ public class MainApplication {
 		//brandRepository.save(productRequestDTO);
 
 		System.out.println(brandRepository.findAll());*/
+
+
 	}
 
 }
