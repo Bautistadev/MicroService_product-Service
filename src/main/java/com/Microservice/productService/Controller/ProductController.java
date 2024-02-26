@@ -9,6 +9,7 @@ import com.Microservice.productService.model.ProductListDTO;
 import com.Microservice.productService.model.ProductRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1/products/")
 public class ProductController implements ProductsApiDelegate {
 
     private ProductService productService;

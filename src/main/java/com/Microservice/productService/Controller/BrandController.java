@@ -11,12 +11,14 @@ import com.Microservice.productService.model.BrandRequestDTO;
 import io.swagger.models.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1/products/")
 public class BrandController implements BrandsApiDelegate {
     private BrandService brandService;
 

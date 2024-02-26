@@ -8,11 +8,14 @@ import com.Microservice.productService.Service.ProductService;
 import com.Microservice.productService.model.*;
 import com.Microservice.productService.model.BrandRequestDTO;
 import com.Microservice.productService.model.ProductRequestDTO;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
@@ -23,25 +26,21 @@ import java.time.LocalDate;
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.Microservice.productService"})
 @EnableDiscoveryClient
-public class MainApplication {
+@EnableFeignClients
+public class MainApplication implements CommandLineRunner {
+
+	@Value(value = "${app.test.property}")
+	private String pro;
 
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext ctx = SpringApplication.run(MainApplication.class, args);
-		/*
-		ProductRequestDTO productRequestDTO = new ProductRequestDTO()
-				.name("Jamon Cocido")
-				.brand(new BrandDTO().id(1))
-				.price(BigDecimal.valueOf(1900))
-				.status(ProductRequestDTO.StatusEnum.ENABLE)
-				.dateCreated(LocalDate.now());
-
-		ProductRepository brandRepository = ctx.getBean(ProductRepository.class);
-		//brandRepository.save(productRequestDTO);
-
-		System.out.println(brandRepository.findAll());*/
-
 
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+
+		System.out.println(pro);
+	}
 }
