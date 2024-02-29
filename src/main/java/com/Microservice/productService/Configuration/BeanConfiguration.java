@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfiguration {
 
+    /**
+     * MAPPER
+     * */
     @Bean
     public BrandMapper brandMapper(){
         return new BrandMapperImplements();
@@ -29,6 +32,9 @@ public class BeanConfiguration {
         return new PriceMapperImplements();
     }
 
+    /**
+     * SERVER
+     * */
     @Bean
     public BrandService brandService(BrandRepository brandRepository, BrandMapper brandMapper){
         return new BrandService(brandRepository,brandMapper);

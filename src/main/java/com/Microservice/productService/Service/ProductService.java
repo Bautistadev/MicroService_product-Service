@@ -25,11 +25,17 @@ public class ProductService{
     private ProductRepository productRepository;
     private ProductMapper productMapper;
 
+
     public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
     }
 
+    /**
+     * @Operation: save
+     * @Param: ProductRequestDTO
+     * @Return: ProductDTO
+     * */
     @Transactional
     public ProductDTO save(ProductRequestDTO productRequestDTO){
         ProductEntity productDB = this.productMapper.map(productRequestDTO);
@@ -37,8 +43,13 @@ public class ProductService{
         return this.productMapper.map(productDB);
     }
 
+    /**
+     * @Operation: retrieve all product
+     * @Param: -
+     * @Return: ProductDTO List
+     * */
     @Transactional
-    public List<ProductDTO> retriveAll(){
+    public List<ProductDTO> retrieveAll(){
         List<ProductDTO> productDTOList = this.productRepository.findAll().stream().map(e->{
             return this.productMapper.map(e);
         }).collect(Collectors.toList());
@@ -46,8 +57,13 @@ public class ProductService{
         return productDTOList;
     }
 
+    /**
+     * @Operation: retrieve product by id
+     * @Param: Integer
+     * @Return: ProductDTO
+     * */
     @Transactional
-    public ProductDTO retriveById(Integer id){
+    public ProductDTO retrieveById(Integer id){
         return this.productMapper.map(this.productRepository.findById(id).get());
     }
 }

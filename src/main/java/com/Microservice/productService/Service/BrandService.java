@@ -21,6 +21,11 @@ public class BrandService {
         this.brandMapper = brandMapper;
     }
 
+    /**
+     * @Operation: Save brand
+     * @Param: BrandRequestDTO
+     * @Return: BrandDTO
+     * */
     public BrandDTO save(BrandRequestDTO brandDTO){
         BrandEntity brandDB = this.brandMapper.map(brandDTO);
         this.brandRepository.save(brandDB);
@@ -29,7 +34,12 @@ public class BrandService {
         return response;
     }
 
-    public List<BrandDTO> retriveAll(){
+    /**
+     * @Operation: retrieve all brands
+     * @Param: -
+     * @Return: BrandDTO List
+     * */
+    public List<BrandDTO> retrieveAll(){
 
         List<BrandDTO> response = this.brandRepository.findAll().stream().map(e ->{
             return this.brandMapper.map(e);
@@ -38,7 +48,12 @@ public class BrandService {
         return response;
     }
 
-    public BrandDTO retriveById(Integer id){
+    /**
+     * @Operation: Retrieve brand by id
+     * @Param: Integer
+     * @Return: BrandDTO
+     * */
+    public BrandDTO retrieveById(Integer id){
         return this.brandMapper.map(this.brandRepository.findById(id).get());
     }
 

@@ -28,18 +28,27 @@ public class PriceController implements PricesApiDelegate {
         return PricesApiDelegate.super.getRequest();
     }
 
+    /**
+     * POST
+     * */
     @Override
     public ResponseEntity<PriceDTO> createPrice(PriceRequestDTO priceRequestDTO) {
         PriceDTO response = this.priceService.save(priceRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<PriceListDTO> retriveAllPrice() {
+    public ResponseEntity<PriceListDTO> retrieveAllPrice() {
         PriceListDTO respose =  new PriceListDTO().items(this.priceService.retriveAll());
         return ResponseEntity.status(HttpStatus.OK).body(respose);
     }
 
+    /**
+     * POST
+     * */
     @Override
     public ResponseEntity<PriceDTO> updatePrice(PriceDTO priceDTO) {
 

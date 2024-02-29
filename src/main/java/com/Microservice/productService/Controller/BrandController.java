@@ -32,34 +32,52 @@ public class BrandController implements BrandsApiDelegate {
         return BrandsApiDelegate.super.getRequest();
     }
 
+    /**
+     * POST
+     * */
     @Override
     public ResponseEntity<BrandDTO> createBrand(BrandRequestDTO brandRequestDTO) {
         BrandDTO response = this.brandService.save(brandRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * GET
+     * */
     @Override
     public ResponseEntity<Void> deleteByBrandId(Integer brandId) {
         return BrandsApiDelegate.super.deleteByBrandId(brandId);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<BrandListDTO> retriveAllBrand() {
-        BrandListDTO response = new BrandListDTO().items(this.brandService.retriveAll());
+    public ResponseEntity<BrandListDTO> retrieveAllBrand() {
+        BrandListDTO response = new BrandListDTO().items(this.brandService.retrieveAll());
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<BrandDTO> retriveBrandById(Integer brandId) {
-        BrandDTO response = this.brandService.retriveById(brandId);
+    public ResponseEntity<BrandDTO> retrieveBrandById(Integer brandId) {
+        BrandDTO response = this.brandService.retrieveById(brandId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<BrandDTO> retriveBrandByName(String brandName) {
-        return BrandsApiDelegate.super.retriveBrandByName(brandName);
+    public ResponseEntity<BrandDTO> retrieveBrandByName(String brandName) {
+        return BrandsApiDelegate.super.retrieveBrandByName(brandName);
     }
 
+    /**
+     * POST
+     * */
     @Override
     public ResponseEntity<BrandDTO> updateBrand(BrandDTO brandDTO) {
         return BrandsApiDelegate.super.updateBrand(brandDTO);

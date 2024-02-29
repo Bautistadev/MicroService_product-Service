@@ -16,11 +16,17 @@ public class PriceService {
     private PriceRepository priceRepository;
     private PriceMapper priceMapper;
 
+
     public PriceService(PriceRepository priceRepository, PriceMapper priceMapper) {
         this.priceRepository = priceRepository;
         this.priceMapper = priceMapper;
     }
 
+    /**
+     * @Operation: save
+     * @Param: PriceRequestDTO
+     * @Return: PriceDTO
+     * */
     public PriceDTO save(PriceRequestDTO priceRequestDTO){
         PriceEntity priceDB = this.priceMapper.map(priceRequestDTO);
         PriceDTO priceDTO = this.priceMapper.map(this.priceRepository.save(priceDB));
@@ -28,6 +34,11 @@ public class PriceService {
         return priceDTO;
     }
 
+    /**
+     * @Operation: retrieve all prices
+     * @Param: -
+     * @Return: PriceDTO List
+     * */
     public List<PriceDTO> retriveAll(){
         List<PriceDTO> response = this.priceRepository.findAll().stream().map(e ->{
             return this.priceMapper.map(e);
@@ -36,6 +47,11 @@ public class PriceService {
         return response;
     }
 
+    /**
+     * @Operation: retrieve by id
+     * @Param: Integer
+     * @Return: PriceDTO
+     * */
     public PriceDTO retriveById(Integer id){
         return this.priceMapper.map(this.priceRepository.findById(id).get());
     }

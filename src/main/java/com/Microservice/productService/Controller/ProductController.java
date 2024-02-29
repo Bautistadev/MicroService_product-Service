@@ -33,6 +33,9 @@ public class ProductController implements ProductsApiDelegate {
         return ProductsApiDelegate.super.getRequest();
     }
 
+    /**
+     * POST
+     * */
     @Override
     public ResponseEntity<ProductDTO> createProduct(ProductRequestDTO productRequestDTO) {
         ProductDTO response = this.productService.save(productRequestDTO);
@@ -45,30 +48,45 @@ public class ProductController implements ProductsApiDelegate {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * GET
+     * */
     @Override
     public ResponseEntity<Void> deleteById(Integer productId) {
         return ProductsApiDelegate.super.deleteById(productId);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<ProductListDTO> retriveAllProduct() {
-        ProductListDTO productListDTO= new ProductListDTO().items(this.productService.retriveAll());
+    public ResponseEntity<ProductListDTO> retrieveAllProduct() {
+        ProductListDTO productListDTO= new ProductListDTO().items(this.productService.retrieveAll());
 
         return ResponseEntity.ok().body(productListDTO);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<ProductDTO> retriveById(Integer productId) {
+    public ResponseEntity<ProductDTO> retrieveById(Integer productId) {
 
-        ProductDTO productDTO = this.productService.retriveById(productId);
+        ProductDTO productDTO = this.productService.retrieveById(productId);
         return ResponseEntity.status(HttpStatus.OK).body(productDTO);
     }
 
+    /**
+     * GET
+     * */
     @Override
-    public ResponseEntity<ProductDTO> retriveByName(String productName) {
-        return ProductsApiDelegate.super.retriveByName(productName);
+    public ResponseEntity<ProductDTO> retrieveByName(String productName) {
+        return ProductsApiDelegate.super.retrieveByName(productName);
     }
 
+    /**
+     * POST
+     * */
     @Override
     public ResponseEntity<ProductDTO> updateProduct(ProductRequestDTO productRequestDTO) {
         return ProductsApiDelegate.super.updateProduct(productRequestDTO);
