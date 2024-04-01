@@ -5,7 +5,9 @@ pipeline{
     }
     environment{
         //variables de entorno
-        git_uri='https://github.com/Bautistadev/MicroService_product-Service.git'
+        configuration_uri='http://localhost:8888'
+        database_username='root'
+        database_password='mpkJORDAN'
     }
     stages{
         stage('checkout'){
@@ -15,12 +17,12 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh 'mvn clean package -DskipTest=true -f pom.xml -Dmy.env.variable=$git_uri'
+                sh 'mvn clean package -DskipTest=true -f pom.xml -Dmy.env.variable=$configuration_uri -Dmy.env.variable=$database_username -Dmy.env.variable=$database_password'
             }
         }
         stage('test'){
             steps{
-                sh 'mvn test -Dmy.env.variable=$git_uri'
+                sh 'mvn test -DskipTest=true -f pom.xml -Dmy.env.variable=$configuration_uri -Dmy.env.variable=$database_username -Dmy.env.variable=$database_password'
             }
         }
         stage('docker build'){
