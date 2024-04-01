@@ -35,6 +35,9 @@ public class ProductController implements ProductsApiDelegate {
 
     /**
      * POST
+     * @Operation: CREAR PRODUCTO
+     * @Param: ProductRequestDTO
+     * @Return: ProductDTO
      * */
     @Override
     public ResponseEntity<ProductDTO> createProduct(ProductRequestDTO productRequestDTO) {
@@ -50,6 +53,9 @@ public class ProductController implements ProductsApiDelegate {
 
     /**
      * GET
+     * @Operation: ELIMINAR PRODUCTO POR ID
+     * @Param: INTEGER
+     * @Return: -
      * */
     @Override
     public ResponseEntity<Void> deleteById(Integer productId) {
@@ -58,6 +64,9 @@ public class ProductController implements ProductsApiDelegate {
 
     /**
      * GET
+     * @Operation: LISTAR TODOS LOS PRODUCTOS
+     * @Param: -
+     * @Return: ProductDTO List
      * */
     @Override
     public ResponseEntity<ProductListDTO> retrieveAllProduct() {
@@ -68,6 +77,9 @@ public class ProductController implements ProductsApiDelegate {
 
     /**
      * GET
+     * @Operation: BUSCAR POR ID
+     * @Param: Integer
+     * @Return: ProductDTO
      * */
     @Override
     public ResponseEntity<ProductDTO> retrieveById(Integer productId) {
@@ -78,6 +90,9 @@ public class ProductController implements ProductsApiDelegate {
 
     /**
      * GET
+     * @Operation: BUSCAR PRODUCTO POR NOMBRE
+     * @Param: String
+     * @Return: ProductDTO
      * */
     @Override
     public ResponseEntity<ProductDTO> retrieveByName(String productName) {
@@ -86,6 +101,9 @@ public class ProductController implements ProductsApiDelegate {
 
     /**
      * POST
+     * @Operation: MODIFICAR PRODUCTO
+     * @Param: PRODUCTO DTO
+     * @Return: ProductDTO (MODIFICADO)
      * */
     @Override
     public ResponseEntity<ProductDTO> updateProduct(ProductRequestDTO productRequestDTO) {

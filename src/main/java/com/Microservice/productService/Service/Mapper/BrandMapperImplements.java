@@ -9,6 +9,11 @@ import com.Microservice.productService.model.ProductDTO;
 import java.util.stream.Collectors;
 
 public class BrandMapperImplements implements BrandMapper{
+
+    /**
+     * @Param: BrandEntity
+     * @Return: BrandDTO
+     * */
     @Override
     public BrandDTO map(BrandEntity brandEntity) {
         BrandDTO brandDTO = new BrandDTO()
@@ -19,6 +24,10 @@ public class BrandMapperImplements implements BrandMapper{
         return brandDTO;
     }
 
+    /**
+     * @Param: BrandDTO
+     * @Return: BrandEntity
+     * */
     @Override
     public BrandEntity map(BrandDTO brandDTO) {
         BrandEntity brandEntity = BrandEntity.builder()
@@ -30,6 +39,10 @@ public class BrandMapperImplements implements BrandMapper{
         return brandEntity;
     }
 
+    /**
+     * @Param: BrandRequestDTO
+     * @Return: BrandEntity
+     * */
     @Override
     public BrandEntity map(BrandRequestDTO brandRequestDTO) {
         BrandEntity brandEntity = BrandEntity.builder()

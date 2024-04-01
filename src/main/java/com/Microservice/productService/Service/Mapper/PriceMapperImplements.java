@@ -9,6 +9,13 @@ import com.Microservice.productService.model.ProductDTO;
 import java.math.BigDecimal;
 
 public class PriceMapperImplements implements PriceMapper{
+
+
+
+    /**
+     * @Param: PriceEntity
+     * @Return: PriceDTO
+     * */
     @Override
     public PriceDTO map(PriceEntity priceEntity) {
 
@@ -22,6 +29,10 @@ public class PriceMapperImplements implements PriceMapper{
         return priceDTO;
     }
 
+    /**
+     * @Param: PriceDTO
+     * @Return: PriceEntity
+     * */
     @Override
     public PriceEntity map(PriceDTO priceDTO) {
         PriceEntity priceEntity = PriceEntity.builder()
@@ -36,6 +47,11 @@ public class PriceMapperImplements implements PriceMapper{
         return priceEntity;
     }
 
+
+    /**
+     * @Param: PriceRequestDTO
+     * @Return: PriceEntity
+     * */
     @Override
     public PriceEntity map(PriceRequestDTO priceRequestDTO) {
         PriceEntity priceEntity = PriceEntity.builder()

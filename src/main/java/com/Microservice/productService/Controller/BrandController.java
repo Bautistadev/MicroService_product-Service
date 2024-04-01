@@ -34,6 +34,9 @@ public class BrandController implements BrandsApiDelegate {
 
     /**
      * POST
+     * @Operation: CREAR MARCA brand
+     * @Param: BrandRequestDTO
+     * @Return: BrandDTO
      * */
     @Override
     public ResponseEntity<BrandDTO> createBrand(BrandRequestDTO brandRequestDTO) {
@@ -43,6 +46,9 @@ public class BrandController implements BrandsApiDelegate {
 
     /**
      * GET
+     * @Operation: BORRAR MARCA
+     * @Param: INTEGER ID
+     * @Return: -
      * */
     @Override
     public ResponseEntity<Void> deleteByBrandId(Integer brandId) {
@@ -50,7 +56,9 @@ public class BrandController implements BrandsApiDelegate {
     }
 
     /**
-     * GET
+     * @Operation: LISTAR TODAS LAS MARCAS
+     * @Param: -
+     * @Return: BRAND LIST DTO
      * */
     @Override
     public ResponseEntity<BrandListDTO> retrieveAllBrand() {
@@ -60,6 +68,9 @@ public class BrandController implements BrandsApiDelegate {
 
     /**
      * GET
+     * @Operation: BUSCAR MARCA POR ID
+     * @Param: INTEGER ID
+     * @Return: BRAND DTO
      * */
     @Override
     public ResponseEntity<BrandDTO> retrieveBrandById(Integer brandId) {
@@ -69,6 +80,9 @@ public class BrandController implements BrandsApiDelegate {
 
     /**
      * GET
+     * @Operation: BUSCAR MARCA POR SU NOMBRE
+     * @Param: STRING
+     * @Return: BRAND DTO
      * */
     @Override
     public ResponseEntity<BrandDTO> retrieveBrandByName(String brandName) {
@@ -77,6 +91,9 @@ public class BrandController implements BrandsApiDelegate {
 
     /**
      * POST
+     * @Operation: MODIFICAR MARCA
+     * @Param: Brand DTO
+     * @Return: Brand DTO (MODIFICADO)
      * */
     @Override
     public ResponseEntity<BrandDTO> updateBrand(BrandDTO brandDTO) {

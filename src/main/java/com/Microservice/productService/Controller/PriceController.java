@@ -29,7 +29,9 @@ public class PriceController implements PricesApiDelegate {
     }
 
     /**
-     * POST
+     * @Operation: CREAR PRECIO
+     * @Param: PriceRequestDTO
+     * @Return: PriceDTO
      * */
     @Override
     public ResponseEntity<PriceDTO> createPrice(PriceRequestDTO priceRequestDTO) {
@@ -38,7 +40,9 @@ public class PriceController implements PricesApiDelegate {
     }
 
     /**
-     * GET
+     * @Operation: LISTAR TODOS LOS PRECIOS
+     * @Param: -
+     * @Return: PriceDTO List
      * */
     @Override
     public ResponseEntity<PriceListDTO> retrieveAllPrice() {
@@ -46,9 +50,7 @@ public class PriceController implements PricesApiDelegate {
         return ResponseEntity.status(HttpStatus.OK).body(respose);
     }
 
-    /**
-     * POST
-     * */
+
     @Override
     public ResponseEntity<PriceDTO> updatePrice(PriceDTO priceDTO) {
 

@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class ProductMapperImplements implements ProductMapper{
 
     /**
-     * @param productEntity
-     * @return productDTO
+     * @param: productEntity
+     * @return: productDTO
      * */
     @Override
     public ProductDTO map(ProductEntity productEntity) {
@@ -49,10 +49,9 @@ public class ProductMapperImplements implements ProductMapper{
     }
 
     /**
-     * @param productDTO
-     * @return productEntity
+     * @param: productDTO
+     * @return: productEntity
      * */
-
     @Override
     public ProductEntity map(ProductDTO productDTO) {
 
@@ -79,6 +78,11 @@ public class ProductMapperImplements implements ProductMapper{
         return productEntity;
     }
 
+
+    /**
+     * @param: productEntity
+     * @return: productDTO
+     * */
     @Override
     public ProductEntity map(ProductRequestDTO productRequestDTO) {
         ProductEntity productEntity = ProductEntity.builder()
