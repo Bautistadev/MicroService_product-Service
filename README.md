@@ -92,5 +92,60 @@ de la aplicacion.
 > Como mencionamos anteriormente, Spring Boot proporpociona End Points para la gestion y monitorio de la apliacion con actuator. Pero tambien nos brinda la posibilidad de
 > habilitarlos o no. Para ello y no extender demaciado este documento, dejo el Link con estas propiedades:
 > (https://docs.spring.io/spring-boot/docs/2.1.13.RELEASE/reference/html/production-ready-endpoints.html)
+> 
+
+<h4>JPA</h4>
+Spring Data JPA, parte de la familia de Spring Data mas grande, Facilita la implementacion de repositorios basados en JPA(Java Persistence API). Su enfoque principal se orienta a la creacion y manipulacion de base de datos con arquitectura relacional
+<h6>Por que JPA? 🤔</h6>
+La implemetacion de una capa de acceso a la base de datos, a la hora de desarrollar un apliacion, suele ser complicada y tardia. Se debe escribir demasiado codigo repetitivo para ejecutar consultas simples.
+Spring Data JPA tiene como objetivo mejorar de manera significante la implelemtacion de capas de accesop a los datos, al reducir el esfuerzo a la cantidad que realmente necesita.
+
+```
++ Maven
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+```
+
+```
++ Implemetacion
+public interface ProductRepository implements JpaRepository
+```
+>[!NOTE]
+>Link para mas informacion:
+>(https://spring.io/projects/spring-data-jpa)
+>(https://spring.io/guides/gs/accessing-data-jpa)
+>(https://www.arquitecturajava.com/spring-boot-jpa-y-su-configuracion/)
+
+<h4>Spring Cloud</h4>
+Spring Cloud ofrece herramientas para que los desarrolladores creen rápidamente algunos de los patrones comunes en sistemas distribuidos(por ejemplo, administracionde la configuracion, descubrimiento de servicios, diyuntores, enrutamiento, etc).
+<h6>¿Por que Spring Cloud? 🤔</h6>
+La coordinacion de los sistemas distribuidos conduce a patrones y, con Spring Cloud, los desarroladores tiene la posibilidad de crear servicion y aplicaciones de manera rapida que implementen esos patrones.
+
+<h6>Eureka Client</h6>
+El descubrimientos de los servicios es uno de los principios clave de la arquitectura basa en microservicios. Pero configurar manualmente la coneccion de cada microservicios cliente  u otra forma a convencion, resulta ser muy dificil y fragil. Eureka es servidor y cliente de descubrimiento de servicios de Netflix. El servidor se puede configurar e implementar para wue tenga alta disponibilidad, y cada servidor replica el estado de los servicios.
+
+```
++ Maven
+<dependency>
+   <groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+	<version>4.0.3</version>
+</dependency>
+```
+
+```
++ Properties
+eureka.instance.instance-id=(Id que identifica al microservicio)
+```
+
+```
++ Implemetacion
+@EnableDiscoveryClients //Habilitamos cliente aureka
+public class MainApplication
+```
+Si todo esta correcto y no demanda la correccion de errores en sus ejecucion.
+![Captura de pantalla 2024-07-09 203008](https://github.com/Bautistadev/MicroService_product-Service/assets/76666780/b9993228-4d1b-4915-ad38-52bc4a6b553e)
 
 
