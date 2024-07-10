@@ -145,7 +145,35 @@ eureka.instance.instance-id=(Id que identifica al microservicio)
 @EnableDiscoveryClients //Habilitamos cliente aureka
 public class MainApplication
 ```
-Si todo esta correcto y no demanda la correccion de errores en sus ejecucion.
+Si todo esta correcto y no demanda la correccion de errores en sus ejecucion. Nuestro microservicio deberia verse reflejado en el cuadro de intancias.
 ![Captura de pantalla 2024-07-09 203008](https://github.com/Bautistadev/MicroService_product-Service/assets/76666780/b9993228-4d1b-4915-ad38-52bc4a6b553e)
+
+<h6>Openfeign</h6>
+Feign es una libreria desarrollada por Netflix que nos permite generar clientes de serviciso web de forma declarativa. Es una muy buena alternativa de RestTemplate, ademas de integra muy bien con otras herramientas de Spring Cloud como Eureka, Hystrix y Ribbon.
+Teniendo en cuenta que ya estamos utilizando Eureka para registrar y descubrir nuestros micro-servicios vamos a ver cómo comunicar dos micro-servicios. Es importante decir que ambos micro-servicios están desarrollados con Java y Spring Boot, ambos exponen una API Rest con endpoints que me permiten consultar, crear, actualizar y eliminar registros de la base de datos y ya están configurados como clientes de Eureka.
+
+```
++ Maven
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+```
++ Implemetacion
+@EnableFeignClients //Habilitamos cliente aureka
+public class MainApplication
+```
+
+![Diagrama sin título](https://github.com/Bautistadev/MicroService_product-Service/assets/76666780/eafdce4e-cc3e-4184-a1ed-d65d66d71fc0)
+
+
+>[!NOTE]
+>Consta que la implementacion de esta dependencia es crucial para la realizacion de las consultas por parte del microservicio de Shopping microservice.
+
+<h6>Bootstrap</h6>
+Spring Cloud Config ofrece compatibilidad del lado del servidor y del lado del cliente para la configuración externalizada en un sistema distribuido. Con Config Server, tiene un lugar central para administrar las propiedades externas de las aplicaciones en todos los entornos. Los conceptos tanto del cliente como del servidor se asignan de manera idéntica a Spring Environmenty PropertySourcelas abstracciones, por lo que se adaptan muy bien a las aplicaciones Spring, pero se pueden usar con cualquier aplicación que se ejecute en cualquier lenguaje. A medida que una aplicación avanza por el proceso de implementación desde el desarrollo hasta la prueba y la producción, puede administrar la configuración entre esos entornos y estar seguro de que las aplicaciones tienen todo lo que necesitan para ejecutarse cuando migran. La implementación predeterminada del backend de almacenamiento del servidor usa git, por lo que admite fácilmente versiones etiquetadas de entornos de configuración y, además, es accesible para una amplia gama de herramientas para administrar el contenido. Es fácil agregar implementaciones alternativas y conectarlas con la configuración de Spring.
+
 
 
