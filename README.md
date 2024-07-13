@@ -29,11 +29,11 @@ en una plataforma de comercio electrónico.
 APIs RESTful: Proporciona una serie de endpoints RESTful que permiten a otros servicios y aplicaciones cliente interactuar con el catálogo de productos. Estos endpoints incluyen:
 
 
-- 🔵 GET /productos: Obtener una lista de productos.
-- 🟢 POST /productos: Crear un nuevo producto.
-- 🟡 PUT /productos/{id}: Actualizar un producto existente.
-- 🔴 DELETE /productos/{id}: Eliminar un producto.
-- 🔵 GET /productos/{id}: Obtener detalles de un producto específico por medio del id.
+- 🔵 GET /products: Obtener una lista de productos.
+- 🟢 POST /products: Crear un nuevo producto.
+- 🟡 PUT /products/{id}: Actualizar un producto existente.
+- 🔴 DELETE /products/{id}: Eliminar un producto.
+- 🔵 GET /products/{id}: Obtener detalles de un producto específico por medio del id.
 
 <h6>Despliegue y escalabilidad</h6>
 
