@@ -6,7 +6,7 @@
 <em>Índice</em>
 - [Descripcion del proyecto](#Descripcion-del-proyecto)
 - [Gestor de dependencias](#Gestor-de-dependencias).
-- [Descripcion de las dependencias](#Descripcion-de-las-dependecias)
+- [Descripción de las dependencias](#Descripcion-de-las-dependencias)
 - [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
 - [Seguridad](#Seguridad).
 - [Demostración de funciones y aplicaciones](#Demostracion-de-funciones-y-aplicaciones).
@@ -51,7 +51,7 @@ Es similar en funcionalidad a Apache Ant, pero tiene un modelo de configuración
 <h6>Version utilizada en el proyecto:</h6> 
 3.2.2
 
-## Descripcion de las dependencias
+## Descripción de las dependencias
 ---
 
 <h4>Actuator</h4>
