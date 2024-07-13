@@ -175,13 +175,65 @@ public class MainApplication
 <h6>Bootstrap</h6>
 Spring Cloud Config ofrece compatibilidad del lado del servidor y del lado del cliente para la configuración externalizada en un sistema distribuido. Con Config Server, tiene un lugar central para administrar las propiedades externas de las aplicaciones en todos los entornos. Los conceptos tanto del cliente como del servidor se asignan de manera idéntica a Spring Environmenty PropertySourcelas abstracciones, por lo que se adaptan muy bien a las aplicaciones Spring, pero se pueden usar con cualquier aplicación que se ejecute en cualquier lenguaje. A medida que una aplicación avanza por el proceso de implementación desde el desarrollo hasta la prueba y la producción, puede administrar la configuración entre esos entornos y estar seguro de que las aplicaciones tienen todo lo que necesitan para ejecutarse cuando migran. La implementación predeterminada del backend de almacenamiento del servidor usa git, por lo que admite fácilmente versiones etiquetadas de entornos de configuración y, además, es accesible para una amplia gama de herramientas para administrar el contenido. Es fácil agregar implementaciones alternativas y conectarlas con la configuración de Spring.
 
+```
++ Maven
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-bootstrap</artifactId>
+	<version>4.0.3</version>
+</dependency>
+
+```
 <h6>Config client</h6>
 
 Una aplicación Spring Boot puede aprovechar de forma inmediata el servidor Spring Config (u otras fuentes de propiedades externas proporcionadas por el desarrollador de la aplicación). También incorpora algunas funciones útiles adicionales relacionadas con Environmentlos eventos de cambio.
 El resultado neto de este comportamiento es que todas las aplicaciones cliente que desean consumir el Servidor de configuración necesitan un bootstrap.yml(o una variable de entorno) con la dirección del servidor configurada spring.cloud.config.uri(por defecto es "http://localhost:[port]").
 Si utiliza una DiscoveryClientimplementación, como Spring Cloud Netflix y Eureka Service Discovery o Spring Cloud Consul, puede hacer que el servidor de configuración se registre con el servicio de detección. Sin embargo, en el modo predeterminado “ Config First ” , los clientes no pueden aprovechar el registro.
 Si prefiere utilizar DiscoveryClientpara localizar el servidor de configuración, puede hacerlo configurando spring.cloud.config.discovery.enabled=true(el valor predeterminado es false). El resultado neto de hacerlo es que todas las aplicaciones cliente necesitan una bootstrap.yml(o una variable de entorno) con la configuración de detección adecuada. Por ejemplo, con Spring Cloud Netflix, debe definir la dirección del servidor Eureka (por ejemplo, en eureka.client.serviceUrl.defaultZone). El precio por utilizar esta opción es un viaje de ida y vuelta de red adicional al inicio, para localizar el registro del servicio. El beneficio es que, siempre que el servicio de detección sea un punto fijo, el servidor de configuración puede cambiar sus coordenadas. El ID de servicio predeterminado es configserver, pero puede cambiarlo en el cliente configurando spring.cloud.config.discovery.serviceId(y en el servidor, de la forma habitual para un servicio, como configurando spring.application.name).
-Spring config client brinda la posibilidad de 
+
+![Captura de pantalla 2024-07-13 153147](https://github.com/user-attachments/assets/0de2780f-56f1-4df8-a2a6-1777f2c6b987)
+
+<h4>Swagger Open API</h4>
+Swagger es una documentación online que se genera sobre una API. Por lo tanto, en esta herramienta podemos ver todos los endpoint que hemos desarrollado en nuestra API Swagger. Además, nos demuestra cómo son los elementos o datos que debemos pasar para hacer que funcione y nos permite probarlos directamente en su interfaz. 
+
+```
++ maven
+
+<dependency>
+	<groupId>org.springdoc</groupId>
+	<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	<version>2.2.0</version>
+</dependency>
+<dependency>
+	<groupId>io.swagger.core.v3</groupId>
+	<artifactId>swagger-annotations</artifactId>
+	<version>2.2.15</version>
+</dependency>
+
+```
+<h4>Mysql Driver</h4>
+Biblioteca de clases que permite la conexión con Bases de Datos que soporten SQL utilizando Java.
+
+```
++ Maven
+<dependency>
+	<groupId>com.mysql</groupId>
+	<artifactId>mysql-connector-j</artifactId>
+	<scope>runtime</scope>
+</dependency>
+```
+
+<h4>Lombok</h4>
+Lombok es una librería Java que automáticamente se conecta a nuestro editor o herramienta de construcción (como pueden ser Maven o Eclipse) y que nos ayuda a generar código para las tareas más repetitivas de nuestras clases como son la generación de métodos setter y getter, constructores, toString, equals, etc.
+```
++ Maven
+
+<dependency>
+	<groupId>org.projectlombok</groupId>
+	<artifactId>lombok</artifactId>
+	<optional>true</optional>
+</dependency
+```
 
 
 
