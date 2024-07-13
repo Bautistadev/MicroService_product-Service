@@ -235,8 +235,22 @@ Lombok es una librería Java que automáticamente se conecta a nuestro editor o 
 </dependency
 ```
 
-## Descripcion de las herramientas CI/CD
+## Descripción de las herramientas CI/CD
+
 ---
+
+<h4>Jenkins</h4>
+Jenkins es una plataforma de automatización de código abierto desarrollada en java, ampliamente aplicada para el facilismo y mejoramiento de procesos de desarrollo de software a través de la integración continua y entrega continua. Fue diseñada con el objetivo de la automatización de las tareas repetitivas y manuales en el ciclo de vida del desarrollo, desde la compilación y prueba de código hasta el despliegue en entornos de producción.
+
+![image](https://github.com/user-attachments/assets/990cba7d-8ffa-4aa5-8957-90b798427af5)
+
+<h6>Pipeline</h6>
+Un pipeline es una herramienta avanzada que permite definir y gestionar flujos de trabajo completos y automatizados. Es un conjunto de pasos y jobs que se ejecutan secuencialmente para llevar a cabo una tareas específicas. En otras palabras es una secuencia ordenada de pasos que permiten llevar a cabo una tarea compleja.
+
+![image](https://github.com/user-attachments/assets/511842b6-a8b4-47dd-90ea-429cdcb79651)
+
+
+
 
 
 
