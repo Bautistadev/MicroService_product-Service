@@ -52,7 +52,7 @@ Es similar en funcionalidad a Apache Ant, pero tiene un modelo de configuración
 3.2.2
 
 ## Descripción de las dependencias
----
+--
 
 <h4>Actuator</h4>
 El desarrollo y la gestion de una aplicacion son los dos aspectos mas importantes dentro del ciclo
@@ -234,6 +234,11 @@ Lombok es una librería Java que automáticamente se conecta a nuestro editor o 
 	<optional>true</optional>
 </dependency
 ```
+
+## Descripcion de las herramientas CI/CD
+---
+
+
 
 
 
