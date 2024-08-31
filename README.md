@@ -301,4 +301,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 >[!NOTE]
 >Link del repositorio de propiedades: https://github.com/Bautistadev/MIcroService_properties-configuration
 
+![Captura de pantalla 2024-08-31 a la(s) 00 35 10](https://github.com/user-attachments/assets/ba6cc0fa-e3c7-41af-a786-014da3a2c75e)
+
+
 
