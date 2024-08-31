@@ -42,6 +42,12 @@ public class ProductService{
         this.productRepository.save(productDB);
         return this.productMapper.map(productDB);
     }
+    @Transactional
+    public ProductDTO save(ProductDTO productDTO){
+        ProductEntity productDB = this.productMapper.map(productDTO);
+        this.productRepository.save(productDB);
+        return this.productMapper.map(productDB);
+    }
 
     /**
      * @Operation: retrieve all product
@@ -66,4 +72,15 @@ public class ProductService{
     public ProductDTO retrieveById(Integer id){
         return this.productMapper.map(this.productRepository.findById(id).get());
     }
+
+    @Transactional
+    public List<ProductDTO> retrieveByName(String name){
+        return this.productRepository.findByName(name).stream().map(e -> this.productMapper.map(e)).collect(Collectors.toList());
+    }
+    @Transactional
+    public void remove(Integer id){
+        this.productRepository.deleteById(id);
+    }
+
+
 }

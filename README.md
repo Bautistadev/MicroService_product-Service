@@ -8,8 +8,8 @@
 - [Gestor de dependencias](#Gestor-de-dependencias).
 - [Descripción de las dependencias](#Descripcion-de-las-dependencias)
 - [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
-- [Base de datos](#Base de datos).
-- [Demostración de funciones y aplicaciones](#Demostracion-de-funciones-y-aplicaciones).
+- [Base de datos](#Base-de-datos)
+- [Demostración de funciones ](#Demostracion-de-funciones).
 
 ## Descripcion del proyecto
 ---
@@ -305,7 +305,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ```
    +--------------------------+                   +--------------------------+
-   |     	  product     |  		  |           brand          |  
+   |         product          |  		  |           brand          |  
    +--------------------------+               	  +--------------------------+
    | - id: Integer (pk)	      |		          |  - id: Integer           |
    | - brand_id: Integer (fk) |                   |  - date_created: DATE    |
@@ -330,4 +330,24 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
    [Tabla que representa el historico de precios de un producto]
 
 ```
+
+## Demostración de funciones
+
+El microservico establece una buena conexion con el servidor de descubrimiento:
+
+El microservicio establece una buena conexion con el servidor de configuraciones:
+
+El microservicio proporciona la interface de Swagger para poder interactuar con el:
+
+El microservicio lista todos los productos correctamente:
+
+El microservicio lista los productos por su id como filtro:
+
+El microservicio lista los productos por su nombre como filtro:
+
+El microservicio establece el alta de un producto de manera correcta:
+
+El microservicio actualizar el producto de manera correcta:
+
+El microservicio Elimina un producto de manera correcta:
 

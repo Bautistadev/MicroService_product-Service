@@ -192,7 +192,7 @@ paths:
                 content: 
                   application/json:
                     schema:
-                        $ref: '#/components/schemas/ProductRequestDTO'
+                        $ref: '#/components/schemas/ProductDTO'
             responses:
                 '200':
                     description: 'Peticion correcta'
@@ -285,12 +285,12 @@ paths:
                     type: string
                    
             responses:
-                200:
-                    description: Si la peticion es correcta
-                    content: 
-                      application/json: 
-                        schema:
-                            $ref: '#/components/schemas/ProductDTO'
+              200:
+                description: Si la peticion es correcta
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/ProductListDTO'
 
     /brands:
         post:

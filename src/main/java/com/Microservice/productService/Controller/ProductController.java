@@ -59,7 +59,12 @@ public class ProductController implements ProductsApiDelegate {
      * */
     @Override
     public ResponseEntity<Void> deleteById(Integer productId) {
-        return ProductsApiDelegate.super.deleteById(productId);
+
+        if(productId == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        this.productService.remove(productId);
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -95,8 +100,9 @@ public class ProductController implements ProductsApiDelegate {
      * @Return: ProductDTO
      * */
     @Override
-    public ResponseEntity<ProductDTO> retrieveByName(String productName) {
-        return ProductsApiDelegate.super.retrieveByName(productName);
+    public ResponseEntity<ProductListDTO> retrieveByName(String productName) {
+        ProductListDTO response =  new ProductListDTO().items(this.productService.retrieveByName(productName));
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     /**
@@ -106,7 +112,21 @@ public class ProductController implements ProductsApiDelegate {
      * @Return: ProductDTO (MODIFICADO)
      * */
     @Override
-    public ResponseEntity<ProductDTO> updateProduct(ProductRequestDTO productRequestDTO) {
-        return ProductsApiDelegate.super.updateProduct(productRequestDTO);
+    public ResponseEntity<ProductDTO> updateProduct(ProductDTO productRequestDTO) {
+
+        if(productRequestDTO == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        if(this.productService.retrieveById(productRequestDTO.getId()).getPrice() != productRequestDTO.getPrice())
+            this.priceService.save(new PriceRequestDTO()
+                    .price(productRequestDTO.getPrice())
+                    .dateCreated(LocalDate.now())
+                    .product(new ProductDTO().id(productRequestDTO.getId())));
+
+
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(this.productService.save(productRequestDTO));
     }
 }
