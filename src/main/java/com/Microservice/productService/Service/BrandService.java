@@ -41,7 +41,10 @@ public class BrandService {
      * */
     public List<BrandDTO> retrieveAll(){
 
-        List<BrandDTO> response = this.brandRepository.findAll().stream().map(e ->{
+        List<BrandDTO> response = this.brandRepository
+                .findAll()
+                .stream()
+                .map(e ->{
             return this.brandMapper.map(e);
         }).collect(Collectors.toList());
 
@@ -57,5 +60,28 @@ public class BrandService {
         return this.brandMapper.map(this.brandRepository.findById(id).get());
     }
 
+    /**
+     * @Operation: Retrieve brand by name
+     * @Param: String
+     * @Return: List BrandDTO
+     * */
+    public List<BrandDTO> retrieveByName(String name){
+        return this.brandRepository
+                .findByName(name)
+                .stream()
+                .map(e -> this.brandMapper.map(e))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @Operation: Delete Brand
+     * @Param: Integer
+     * */
+    public void removeBrand(Integer id){
+        if(id == null)
+            throw new IllegalArgumentException();
+
+        this.brandRepository.deleteById(id);
+    }
 
 }

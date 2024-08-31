@@ -85,12 +85,13 @@ public class BrandController implements BrandsApiDelegate {
      * @Return: BRAND DTO
      * */
     @Override
-    public ResponseEntity<BrandDTO> retrieveBrandByName(String brandName) {
-        return BrandsApiDelegate.super.retrieveBrandByName(brandName);
+    public ResponseEntity<BrandListDTO> retrieveBrandByName(String brandName) {
+        BrandListDTO response = new BrandListDTO().items(this.brandService.retrieveByName(brandName));
+        return  ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     /**
-     * POST
+     * PUT
      * @Operation: MODIFICAR MARCA
      * @Param: Brand DTO
      * @Return: Brand DTO (MODIFICADO)
@@ -98,5 +99,16 @@ public class BrandController implements BrandsApiDelegate {
     @Override
     public ResponseEntity<BrandDTO> updateBrand(BrandDTO brandDTO) {
         return BrandsApiDelegate.super.updateBrand(brandDTO);
+    }
+
+    /**
+     * DELETE
+     * @Operation: ELIMINAR MARCA
+     * @Param: Integer id
+     *
+     * */
+    public ResponseEntity<Void> removeBrand(Integer id){
+        this.brandService.removeBrand(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -54,11 +54,16 @@ public class ProductService{
      * @Param: -
      * @Return: ProductDTO List
      * */
+
     @Transactional
     public List<ProductDTO> retrieveAll(){
-        List<ProductDTO> productDTOList = this.productRepository.findAll().stream().map(e->{
-            return this.productMapper.map(e);
-        }).collect(Collectors.toList());
+    List<ProductDTO> productDTOList = this.productRepository
+            .findAll()
+            .stream()
+            .map(e->{
+                return this.productMapper.map(e);
+            })
+            .collect(Collectors.toList());
 
         return productDTOList;
     }
