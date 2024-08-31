@@ -4,10 +4,10 @@
 ![image](https://github.com/Bautistadev/MicroService_product-Service/assets/76666780/b55d6630-81d4-456f-bdfe-16a6333da13b)
 
 <em>Índice</em>
-- [Descripcion del proyecto](#Descripcion-del-proyecto)
+- [Descripción del proyecto](#Descripcion-del-proyecto)
 - [Gestor de dependencias](#Gestor-de-dependencias).
 - [Descripción de las dependencias](#Descripcion-de-las-dependencias)
-- [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
+- [Descripción de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
 - [Base de datos](#Base-de-datos)
 - [Demostración de funciones ](#Demostracion-de-funciones).
 
@@ -26,14 +26,14 @@ en una plataforma de comercio electrónico.
 11
 
 <h6>Interfaz y Comunicación</h6>
-APIs RESTful: Proporciona una serie de endpoints RESTful que permiten a otros servicios y aplicaciones cliente interactuar con el catálogo de productos. Estos endpoints incluyen:
-
+APIs RESTful: Proporciona una serie de endpoints RESTfull que permiten a otros servicios y aplicaciones cliente interactuar con el catálogo de productos. Estos endpoints incluyen:
 
 - 🔵 GET /products: Obtener una lista de productos.
 - 🟢 POST /products: Crear un nuevo producto.
 - 🟡 PUT /products/{id}: Actualizar un producto existente.
 - 🔴 DELETE /products/{id}: Eliminar un producto.
 - 🔵 GET /products/{id}: Obtener detalles de un producto específico por medio del id.
+- 🔵 GET /products/{productName}: Obtener detalles de un producto específico por medio del nombre.
 
 <h6>Despliegue y escalabilidad</h6>
 
@@ -220,6 +220,10 @@ Swagger es una documentación online que se genera sobre una API. Por lo tanto, 
 </dependency>
 
 ```
+<img width="1657" alt="Captura de pantalla 2024-08-31 a la(s) 02 26 54" src="https://github.com/user-attachments/assets/4e9863c4-ca02-4642-a12e-38cede40f7ca">
+
+
+
 <h4>Mysql Driver</h4>
 Biblioteca de clases que permite la conexión con Bases de Datos que soporten SQL utilizando Java.
 
@@ -259,7 +263,7 @@ Un pipeline es una herramienta avanzada que permite definir y gestionar flujos d
 ![image](https://github.com/user-attachments/assets/511842b6-a8b4-47dd-90ea-429cdcb79651)
 
 <h4>Docker</h4>
-Docker es una herramienta de virtualizacion de sistema operativos, basado en el uso de contenedores como arquitectura de virtualizacion.
+Docker es una herramienta de virtualización de sistema operativos, basado en el uso de contenedores.
 Un contenedor es una instancia ejecutable de una imagen de Docker. Contiene todo lo que se necesita para ejecutar la aplicación.
 A diferencia de las máquinas virtuales que requieren un sistema operativo completo y su propio kernel, los contenedores Docker comparten el kernel del sistema operativo host.
 Esto significa que todos los contenedores que se ejecutan en un host Docker utilizan el mismo kernel. Esta arquitectura reduce significativamente el overhead en comparación con las máquinas virtuales, ya que los contenedores no necesitan emular hardware o cargar un kernel propio, resultando en un inicio más rápido y menor consumo de recursos.
@@ -270,9 +274,9 @@ Esto significa que todos los contenedores que se ejecutan en un host Docker util
 
 ## Base de datos
 
-El siguiente proyecto hace uso de un gestor de base de datos MySQL, debido a su sencilles y ademas el proyecto en un entorno de desarrollo, el cual se desea
-comprobar la correcta funcionalidad de las operaciones y peticiones, no se amerita utilizar un gestor de base de datos mas coplejo y coorporativo como
-podria ser un Gestor de Oracle o MySQL Server. En caso de querer realizar pruebas con un Gestor mas poderoso, solo basta con cambiar la depencia de MySQL
+El siguiente proyecto hace uso de un gestor de base de datos MySQL, debido a su sencillez y además el proyecto en un entorno de desarrollo, el cual se desea
+comprobar la correcta funcionalidad de las operaciones y peticiones, no se amerita utilizar un gestor de base de datos más complejo y corporativo como
+podría ser un Gestor de Oracle o MySQL Server. En caso de querer realizar pruebas con un Gestor más poderoso, solo basta con cambiar la dependencia de MySQL
 por la del Gestor de base de datos deseado. Ya que JPA se encarga del resto.
 
 
@@ -327,27 +331,77 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 				| - date_created: Date	   |
 				|			   |
 				+--------------------------+
-   [Tabla que representa el historico de precios de un producto]
+   [Tabla que representa el histórico de precios de un producto]
 
 ```
 
 ## Demostración de funciones
 
-El microservico establece una buena conexion con el servidor de descubrimiento:
+<h4>El microservicio establece conexión con el servidor de descubrimiento:</h4>
 
-El microservicio establece una buena conexion con el servidor de configuraciones:
+![Captura de pantalla 2024-08-31 a la(s) 02 38 52](https://github.com/user-attachments/assets/f5d378ad-c5bc-475f-a4f2-30c4b738c55a)
 
-El microservicio proporciona la interface de Swagger para poder interactuar con el:
 
-El microservicio lista todos los productos correctamente:
+![Captura de pantalla 2024-08-31 a la(s) 02 37 28](https://github.com/user-attachments/assets/446bbdbc-0594-4e2e-b727-d1fa3f56d448)
 
-El microservicio lista los productos por su id como filtro:
 
-El microservicio lista los productos por su nombre como filtro:
 
-El microservicio establece el alta de un producto de manera correcta:
 
-El microservicio actualizar el producto de manera correcta:
 
-El microservicio Elimina un producto de manera correcta:
+
+<h4>El microservicio establece una buena conexión con el servidor de configuraciones:</h4>
+
+![Captura de pantalla 2024-08-31 a la(s) 02 40 29](https://github.com/user-attachments/assets/0052bea5-1087-4186-a0e5-7ca510f96b1a)
+
+
+
+
+
+
+
+<h4>El microservicio proporciona la interfaz de Swagger para poder interactuar con el:</h4>
+
+<img width="1657" alt="Captura de pantalla 2024-08-31 a la(s) 02 26 54" src="https://github.com/user-attachments/assets/4e9863c4-ca02-4642-a12e-38cede40f7ca">
+
+
+
+
+
+
+<h4>El microservicio lista todos los productos correctamente:</h4>
+
+<img width="1144" alt="Captura de pantalla 2024-08-31 a la(s) 02 45 00" src="https://github.com/user-attachments/assets/e9f61f5f-d678-462d-8ae0-bc7993a09c38">
+
+
+
+
+
+
+<h4>El microservicio lista los productos por su id como filtro:</h4>
+
+<img width="1142" alt="Captura de pantalla 2024-08-31 a la(s) 02 48 00" src="https://github.com/user-attachments/assets/c1a30741-522e-42ef-8a28-4fef88875741">
+
+
+
+
+
+
+<h4>El microservicio lista los productos por su nombre como filtro:</h4>
+
+<img width="1154" alt="Captura de pantalla 2024-08-31 a la(s) 02 48 40" src="https://github.com/user-attachments/assets/91fc4a5e-bba6-4f2c-a922-35213513ffe8">
+
+
+
+
+
+<h4>El microservicio establece el alta de un producto de manera correcta:</h4>
+
+<img width="948" alt="Captura de pantalla 2024-08-31 a la(s) 02 51 27" src="https://github.com/user-attachments/assets/529c138a-c72d-4c58-a93a-300154f3eb18">
+
+
+
+
+<h4>El microservicio modificar un producto de manera correcta:</h4>
+<img width="954" alt="Captura de pantalla 2024-08-31 a la(s) 02 54 20" src="https://github.com/user-attachments/assets/f967a868-9f67-45d9-926f-d84fd14b4a79">
+
 
