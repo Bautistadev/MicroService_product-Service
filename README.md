@@ -8,7 +8,7 @@
 - [Gestor de dependencias](#Gestor-de-dependencias).
 - [Descripción de las dependencias](#Descripcion-de-las-dependencias)
 - [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
-- [Seguridad](#Seguridad).
+- [Base de datos](#Base de datos).
 - [Demostración de funciones y aplicaciones](#Demostracion-de-funciones-y-aplicaciones).
 
 ## Descripcion del proyecto
@@ -96,7 +96,7 @@ de la aplicacion.
 
 <h4>JPA</h4>
 Spring Data JPA, parte de la familia de Spring Data mas grande, Facilita la implementacion de repositorios basados en JPA(Java Persistence API). Su enfoque principal se orienta a la creacion y manipulacion de base de datos con arquitectura relacional
-<h6>Por que JPA? 🤔</h6>
+<h6>Por qué JPA? 🤔</h6>
 La implemetacion de una capa de acceso a la base de datos, a la hora de desarrollar un apliacion, suele ser complicada y tardia. Se debe escribir demasiado codigo repetitivo para ejecutar consultas simples.
 Spring Data JPA tiene como objetivo mejorar de manera significante la implelemtacion de capas de accesop a los datos, al reducir el esfuerzo a la cantidad que realmente necesita.
 
@@ -107,11 +107,20 @@ Spring Data JPA tiene como objetivo mejorar de manera significante la implelemta
    <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 ```
+```
++ Properties
+spring.jpa.properties.dialect = org.hibernate.dialect.MySQL8Dialect
+spring.jpa.show-sql = true
+spring.jpa.properties.hibernate.format_sql = true
+spring.jpa.properties.hibernate.hbm2ddl.auto = update
+spring.jpa.properties.generate-ddl = true
+```
 
 ```
 + Implemetacion
 public interface ProductRepository implements JpaRepository
 ```
+
 >[!NOTE]
 >Link para mas informacion:
 >(https://spring.io/projects/spring-data-jpa)
@@ -225,9 +234,9 @@ Biblioteca de clases que permite la conexión con Bases de Datos que soporten SQ
 
 <h4>Lombok</h4>
 Lombok es una librería Java que automáticamente se conecta a nuestro editor o herramienta de construcción (como pueden ser Maven o Eclipse) y que nos ayuda a generar código para las tareas más repetitivas de nuestras clases como son la generación de métodos setter y getter, constructores, toString, equals, etc.
+
 ```
 + Maven
-
 <dependency>
 	<groupId>org.projectlombok</groupId>
 	<artifactId>lombok</artifactId>
@@ -249,11 +258,47 @@ Un pipeline es una herramienta avanzada que permite definir y gestionar flujos d
 
 ![image](https://github.com/user-attachments/assets/511842b6-a8b4-47dd-90ea-429cdcb79651)
 
+<h4>Docker</h4>
+Docker es una herramienta de virtualizacion de sistema operativos, basado en el uso de contenedores como arquitectura de virtualizacion.
+Un contenedor es una instancia ejecutable de una imagen de Docker. Contiene todo lo que se necesita para ejecutar la aplicación.
+A diferencia de las máquinas virtuales que requieren un sistema operativo completo y su propio kernel, los contenedores Docker comparten el kernel del sistema operativo host.
+Esto significa que todos los contenedores que se ejecutan en un host Docker utilizan el mismo kernel. Esta arquitectura reduce significativamente el overhead en comparación con las máquinas virtuales, ya que los contenedores no necesitan emular hardware o cargar un kernel propio, resultando en un inicio más rápido y menor consumo de recursos.
+
+<img src="image-2.png" alt="Descripción de la imagen" width="600"/>
 
 
 
+## Base de datos
+
+El siguiente proyecto hace uso de un gestor de base de datos MySQL, debido a su sencilles y ademas el proyecto en un entorno de desarrollo, el cual se desea
+comprobar la correcta funcionalidad de las operaciones y peticiones, no se amerita utilizar un gestor de base de datos mas coplejo y coorporativo como
+podria ser un Gestor de Oracle o MySQL Server. En caso de querer realizar pruebas con un Gestor mas poderoso, solo basta con cambiar la depencia de MySQL
+por la del Gestor de base de datos deseado. Ya que JPA se encarga del resto.
 
 
+```
++ Maven
+<dependency>
+	<groupId>com.mysql</groupId>
+	<artifactId>mysql-connector-j</artifactId>
+	<scope>runtime</scope>
+</dependency>
+```
 
+```
++ Properties
+spring.datasource.username=${database_username}
+spring.datasource.password=${database_password}
+```
+
+```
++ Other properties in configuration directory on github
+
+spring.datasource.url=jdbc:mysql://localhost:3306/eCommerce?allowPublicKeyRetrieval=true&useSSL=false
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+```
+>[!NOTE]
+>Link del repositorio de propiedades: https://github.com/Bautistadev/MIcroService_properties-configuration
 
 
