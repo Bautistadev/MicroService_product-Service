@@ -303,12 +303,31 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ![Captura de pantalla 2024-08-31 a la(s) 00 35 10](https://github.com/user-attachments/assets/ba6cc0fa-e3c7-41af-a786-014da3a2c75e)
 
-```plantuml
-@startuml
-class User {
-    +String name
-    +String email
-    +login()
-}
-@enduml
+```
+   +--------------------------+                   +--------------------------+
+   |     	  product    	  |  				  |     	  brand 	   	 |  
+   +--------------------------+               	  +--------------------------+
+   | - id: Integer (pk)	      |				  	  |	 - id: Integer			 |
+   | - brand_id: Integer (fk) |                   |  - date_created: DATE	 |
+   | - date_created: Date	  |				      |	 - name: Varchar(255)	 |
+   | - price: Float      	  |				      |							 |
+   | - name: Varchar(255)     |				      |							 |
+   | - status: ENUM 		  |  				  |							 |
+   +--------------------------+				      +--------------------------+
+[Tabla que representa el producto]				[Tabla que representa la marca]
+
+  
+
+				+--------------------------+
+				|     	  prices    	   |
+				+--------------------------+
+				| - id: Integer (pk)	   |	
+				| - prices: Float          | 
+				| - product_id: Date	   |
+				| - date_created: Date	   |
+				|						   |
+				+--------------------------+
+   [Tabla que representa el historico de precios de un producto]
+
+```
 
