@@ -4,14 +4,14 @@
 ![image](https://github.com/Bautistadev/MicroService_product-Service/assets/76666780/b55d6630-81d4-456f-bdfe-16a6333da13b)
 
 <em>Índice</em>
-- [Descripción del proyecto](#Descripcion-del-proyecto)
+- [Descripción del proyecto](#Descripción-del-proyecto)
 - [Gestor de dependencias](#Gestor-de-dependencias).
-- [Descripción de las dependencias](#Descripcion-de-las-dependencias)
-- [Descripción de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
+- [Descripción de las dependencias](#Descripción-de-las-dependencias)
+- [Descripción de las herramientas CI/CD](#Descripcón-de-las-herramientas-CI/CD).
 - [Base de datos](#Base-de-datos)
-- [Demostración de funciones ](#Demostracion-de-funciones).
+- [Demostración de funciones ](#Demostración-de-funciones).
 
-## Descripcion del proyecto
+## Descripción del proyecto
 ---
 En este proyecto, se desarrolló un pequeño micro servicio que tiene como tarea brindar a quines consuman de este, todo el catalogo de productos
 del negocio que lo utilize.
