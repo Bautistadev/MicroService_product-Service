@@ -7,7 +7,7 @@
 - [Descripción del proyecto](#Descripción-del-proyecto)
 - [Gestor de dependencias](#Gestor-de-dependencias).
 - [Descripción de las dependencias](#Descripción-de-las-dependencias)
-- [Descripción de las herramientas CI/CD](#Descripcón-de-las-herramientas-CI/CD).
+- [Descripción de las herramientas CI/CD](#Descripción-de-las-herramientas-CI/CD).
 - [Base de datos](#Base-de-datos)
 - [Demostración de funciones ](#Demostración-de-funciones).
 
